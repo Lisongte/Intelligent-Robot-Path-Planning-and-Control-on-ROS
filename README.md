@@ -87,11 +87,12 @@ rviz
 
 In RViz, add the following displays:
 
-* Map
+* Point Cloud
+* Occupancy Grid
 * Path
-* Marker
 
 to visualize the map and planned path.
+__Don't forget to check the frame to "world" instead of "map"!__
 
 ---
 
@@ -113,28 +114,19 @@ to visualize the map and planned path.
 The following algorithms will be integrated:
 
 * A* Algorithm
-* RRT Algorithm
-* RRT* Algorithm
+
 
 ---
 
-## Motion Control
+## Motion Control & Trajectory Optimization
 
 Future work includes:
 
-* Differential-drive robot control
-* Trajectory tracking
-* Virtual control point control method
+* Robot control by __virtual point method__
+* Path Optimization
 
 ---
 
-## Trajectory Optimization
-
-* Path interpolation
-* Smooth curve generation
-* Obstacle avoidance refinement
-
----
 
 # Future Research Direction
 
