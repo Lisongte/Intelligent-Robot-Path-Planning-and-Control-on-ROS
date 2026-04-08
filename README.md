@@ -169,15 +169,7 @@ Future development will include:
 
 ---
 
-# Visualization Result
 
-Add RViz screenshots here:
-
-```markdown
-![rviz_result](images/result.png)
-```
-
----
 
 # Notes
 
@@ -189,6 +181,5 @@ Before running:
 
 ---
 
-# Author
 
 ROS Navigation Project for Intelligent Mobile Robot Research
