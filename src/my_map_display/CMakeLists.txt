@@ -13,6 +13,11 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   sensor_msgs
   nav_msgs
+  tf2
+  tf2_ros
+  geometry_msgs
+  nav_msgs
+  visualization_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -228,3 +233,6 @@ target_link_libraries(path_planner_node ${catkin_LIBRARIES} occupancy_grid astar
 
 add_executable(robot_display_node src/robot_display_node.cpp)
 target_link_libraries(robot_display_node ${catkin_LIBRARIES})
+
+add_executable(robot_controller_node src/robot_controller_node.cpp)
+target_link_libraries(robot_controller_node ${catkin_LIBRARIES})

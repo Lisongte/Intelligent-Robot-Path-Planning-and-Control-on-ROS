@@ -1,26 +1,39 @@
 <launch>
-    <!-- 设置参数：机器人半径和起点终点 -->
-    <arg name="robot_radius" default="0.0" />
-    <arg name="start_x" default="0.0" />
-    <arg name="start_y" default="0.0" />
-    <arg name="goal_x" default="3.0" />
-    <arg name="goal_y" default="3.0" />
+    <!-- 使用系统时间 -->
+    <param name="use_sim_time" value="false"/>
+
+    <!-- 机器人参数 -->
+    <arg name="robot_radius" default="0.2"/>
+    <arg name="start_x" default="0.0"/>
+    <arg name="start_y" default="0.0"/>
+    <arg name="start_theta" default="0.0"/>
+    <arg name="goal_x" default="3.0"/>
+    <arg name="goal_y" default="3.0"/>
 
     <!-- 地图生成节点 -->
-    <node name="map_generator" pkg="my_map_display" type="simple_map_publisher" output="screen" />
+    <node name="map_generator" pkg="my_map_display" type="simple_map_publisher" output="screen"/>
 
     <!-- 路径规划节点 -->
     <node name="path_planner" pkg="my_map_display" type="path_planner_node" output="screen" required="true">
-        <param name="robot_radius" value="$(arg robot_radius)" />
-        <param name="start_x" value="$(arg start_x)" />
-        <param name="start_y" value="$(arg start_y)" />
-        <param name="goal_x" value="$(arg goal_x)" />
-        <param name="goal_y" value="$(arg goal_y)" />
+        <param name="robot_radius" value="$(arg robot_radius)"/>
+        <param name="start_x" value="$(arg start_x)"/>
+        <param name="start_y" value="$(arg start_y)"/>
+        <param name="goal_x" value="$(arg goal_x)"/>
+        <param name="goal_y" value="$(arg goal_y)"/>
     </node>
 
-    <!-- 机器人显示节点（静态立方体） -->
-    <node name="robot_display" pkg="my_map_display" type="robot_display_node" output="screen" />
+    <!-- 机器人控制节点 -->
+    <node name="robot_controller" pkg="my_map_display" type="robot_controller_node" output="screen">
+        <param name="init_x" value="$(arg start_x)"/>
+        <param name="init_y" value="$(arg start_y)"/>
+        <param name="init_theta" value="$(arg start_theta)"/>
+        <param name="Kp_dist" value="1.0"/>
+        <param name="Kp_angle" value="3.0"/>
+        <param name="wheel_base" value="0.4"/>
+        <param name="arrival_tolerance" value="0.05"/>
+        <param name="control_freq" value="20.0"/>
+    </node>
 
-    <!-- 启动 RViz，自动加载配置文件（如果存在） -->
-    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_map_display)/config/demo.rviz" />
+    <!-- RViz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find my_map_display)/config/demo.rviz"/>
 </launch>
