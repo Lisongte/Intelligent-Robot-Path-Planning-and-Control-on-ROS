@@ -225,3 +225,6 @@ target_link_libraries(astar_planner ${catkin_LIBRARIES} occupancy_grid)
 # 添加主节点可执行文件
 add_executable(path_planner_node src/path_planner_node.cpp)
 target_link_libraries(path_planner_node ${catkin_LIBRARIES} occupancy_grid astar_planner)
+
+add_executable(robot_display_node src/robot_display_node.cpp)
+target_link_libraries(robot_display_node ${catkin_LIBRARIES})
