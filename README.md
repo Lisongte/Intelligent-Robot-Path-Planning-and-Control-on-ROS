@@ -1,8 +1,14 @@
 # Intelligent Robot Path Planning and Control on ROS
 
-A ROS-based intelligent mobile robot navigation project focused on **map generation, global path planning, and robot visualization**.
+A ROS-based intelligent mobile robot navigation project for **map generation, occupancy grid construction, global path planning, path tracking, and visualization in RViz**.
 
-This project aims to build a complete navigation framework for mobile robots under ROS, including environment modeling, path planning, visualization in RViz, and future motion control extensions.
+This project builds a complete navigation pipeline for a differential-drive mobile robot under ROS, including:
+
+* environment map publishing
+* occupancy grid generation
+* A* global path planning
+* robot path tracking controller
+* RViz visualization
 
 ---
 
@@ -14,7 +20,8 @@ Intelligent-Robot-Path-Planning-and-Control-on-ROS/
 │   └── my_map_display/
 │       ├── launch/
 │       ├── src/
-│       ├── config/
+│       ├── include/
+│       ├── rviz/
 │       ├── CMakeLists.txt
 │       └── package.xml
 │── .gitignore
@@ -28,7 +35,7 @@ Intelligent-Robot-Path-Planning-and-Control-on-ROS/
 # Environment Requirements
 
 * Ubuntu 20.04
-* ROS Noetic (recommended)
+* ROS Noetic
 * CMake
 * catkin workspace
 * RViz
@@ -54,7 +61,7 @@ source ~/robots/devel/setup.bash
 
 # Run the Project
 
-## Start ROS master
+Launch the full system:
 
 ```bash
 cd ~/robots
@@ -65,7 +72,9 @@ roslaunch my_map_display demo.launch
 This launch file starts:
 
 * map publisher
+* occupancy grid generator
 * path planner
+* robot controller
 * robot visualization node
 * RViz
 
@@ -73,27 +82,37 @@ This launch file starts:
 
 # System Modules
 
-## Map Generation
+## 1. Map Generation
 
-Publishes a predefined occupancy grid map.
+Publishes a predefined obstacle map as point cloud data.
 
-## Path Planning
+## 2. Occupancy Grid Construction
 
-Computes a collision-free global path from start point to goal point.
+Converts point cloud into occupancy grid for planning.
 
-## Robot Visualization
+## 3. Global Path Planning
 
-Displays the robot as a marker in RViz.
+Uses A* algorithm to generate a collision-free path from start point to goal point.
 
-## RViz Visualization
+## 4. Robot Path Tracking
+
+Robot sequentially tracks planned path points using velocity control.
+
+## 5. Robot Visualization
+
+Displays robot pose and trajectory in RViz.
+
+## 6. RViz Visualization
 
 Visualizes:
 
+* obstacle point cloud
 * occupancy grid
-* path
+* planned path
 * robot marker
+* robot trajectory
 
-⚠️ Set **Fixed Frame** to:
+⚠️ RViz Fixed Frame must be set to:
 
 ```bash
 world
@@ -103,21 +122,23 @@ world
 
 # Current Implemented Functions
 
-* Static map generation
-* Obstacle publishing
-* Path planning node
-* Robot marker display
-* Launch file integration
+* static map publishing
+* obstacle visualization
+* occupancy grid generation
+* A* path planning
+* single-shot path publishing
+* robot path tracking controller
+* launch synchronization
 
 ---
 
-# Algorithms
+# Planning Algorithm
 
-Current / planned planning algorithms:
+Currently implemented:
 
 * A* algorithm
 
-Future extensions:
+Planned extensions:
 
 * path smoothing
 * trajectory optimization
@@ -125,14 +146,26 @@ Future extensions:
 
 ---
 
+# Motion Control
+
+Current controller features:
+
+* waypoint tracking
+* heading correction
+* minimum velocity protection
+* angular velocity saturation
+
+---
+
 # Future Work
 
 Future development will include:
 
-* robot motion control
-* virtual point tracking
-* trajectory following
+* virtual target point tracking
+* improved path smoothness
 * dynamic obstacle avoidance
+* local planner integration
+* full navigation stack compatibility
 
 ---
 
@@ -148,10 +181,14 @@ Add RViz screenshots here:
 
 # Notes
 
-Before running the project:
+Before running:
 
-* make sure all ROS packages are compiled successfully
-* source the workspace environment
-* ensure RViz frame is set correctly
+* compile all ROS packages successfully
+* source workspace environment
+* ensure RViz frame is set to `world`
 
 ---
+
+# Author
+
+ROS Navigation Project for Intelligent Mobile Robot Research
