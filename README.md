@@ -1,7 +1,8 @@
-# Intelligent-Robot-Path-Planning-and-Control-on-ROS
+# Intelligent Robot Path Planning and Control on ROS
 
-A ROS-based intelligent mobile robot navigation project focusing on **map generation, path planning, and motion control**.
-The project aims to construct a complete navigation framework for mobile robots under ROS, including environment modeling, global path planning, and future trajectory tracking control.
+A ROS-based intelligent mobile robot navigation project focused on **map generation, global path planning, and robot visualization**.
+
+This project aims to build a complete navigation framework for mobile robots under ROS, including environment modeling, path planning, visualization in RViz, and future motion control extensions.
 
 ---
 
@@ -9,34 +10,41 @@ The project aims to construct a complete navigation framework for mobile robots 
 
 ```bash
 Intelligent-Robot-Path-Planning-and-Control-on-ROS/
-│── src/                  # ROS source code
-│── build/                # Build files
-│── devel/                # ROS workspace environment
-│── README.md             # Project documentation
+│── src/
+│   └── my_map_display/
+│       ├── launch/
+│       ├── src/
+│       ├── config/
+│       ├── CMakeLists.txt
+│       └── package.xml
+│── .gitignore
+│── README.md
 ```
+
+> `build/` and `devel/` are generated automatically after compilation and are not included in the repository.
 
 ---
 
 # Environment Requirements
 
-* Ubuntu Linux (Ubuntu 20.04.x is often better)
-* ROS Noetic / ROS Melodic
-* RViz
+* Ubuntu 20.04
+* ROS Noetic (recommended)
 * CMake
 * catkin workspace
+* RViz
 
 ---
 
 # Build the Project
 
-Compile the ROS workspace before running:
+Compile the workspace:
 
 ```bash
 cd ~/robots
 catkin_make
 ```
 
-Then source the environment:
+Source the environment:
 
 ```bash
 source ~/robots/devel/setup.bash
@@ -44,104 +52,93 @@ source ~/robots/devel/setup.bash
 
 ---
 
-# Map Generation and Path Planning
+# Run the Project
 
-## Terminal 1: Start ROS Master
+## Start ROS master
 
 ```bash
-roscore
+cd ~/robots
+source devel/setup.bash
+roslaunch my_map_display demo.launch
 ```
 
-This starts the ROS master for node communication.
+This launch file starts:
+
+* map publisher
+* path planner
+* robot visualization node
+* RViz
 
 ---
 
-## Terminal 2: Launch Map Publisher
+# System Modules
+
+## Map Generation
+
+Publishes a predefined occupancy grid map.
+
+## Path Planning
+
+Computes a collision-free global path from start point to goal point.
+
+## Robot Visualization
+
+Displays the robot as a marker in RViz.
+
+## RViz Visualization
+
+Visualizes:
+
+* occupancy grid
+* path
+* robot marker
+
+⚠️ Set **Fixed Frame** to:
 
 ```bash
-source ~/robots/devel/setup.bash
-rosrun my_map_display simple_map_publisher
+world
 ```
-
-This node publishes a predefined occupancy grid map.
 
 ---
 
-## Terminal 3: Launch Path Planner
-
-```bash
-source ~/robots/devel/setup.bash
-rosrun my_map_display path_planner_node
-```
-
-This node performs path planning based on the generated map.
-
----
-
-## Terminal 4: Open RViz Visualization
-
-```bash
-source ~/robots/devel/setup.bash
-rviz
-```
-
-In RViz, add the following displays:
-
-* Point Cloud
-* Occupancy Grid
-* Path
-
-to visualize the map and planned path.
-__Don't forget to check the frame to "world" instead of "map"!__
-
----
-
-# Current Functions
-
-## Implemented Modules
+# Current Implemented Functions
 
 * Static map generation
 * Obstacle publishing
-* Basic path planning node
-* RViz visualization
+* Path planning node
+* Robot marker display
+* Launch file integration
 
 ---
 
-# Planned Extensions
+# Algorithms
 
-## Path Planning Algorithms
+Current / planned planning algorithms:
 
-The following algorithms will be integrated:
+* A* algorithm
 
-* A* Algorithm
+Future extensions:
 
-
----
-
-## Motion Control & Trajectory Optimization
-
-Future work includes:
-
-* Robot control by __virtual point method__
-* Path Optimization
+* path smoothing
+* trajectory optimization
+* local replanning
 
 ---
 
+# Future Work
 
-# Future Research Direction
+Future development will include:
 
-This project will gradually evolve into a complete autonomous mobile robot navigation framework, including:
-
-* environment perception
-* path planning
-* motion control
-* simulation and real-world deployment
+* robot motion control
+* virtual point tracking
+* trajectory following
+* dynamic obstacle avoidance
 
 ---
 
 # Visualization Result
 
-You may place RViz screenshots here:
+Add RViz screenshots here:
 
 ```markdown
 ![rviz_result](images/result.png)
@@ -151,4 +148,10 @@ You may place RViz screenshots here:
 
 # Notes
 
-Before running the project, make sure all ROS packages are compiled successfully and the workspace path is correct.
+Before running the project:
+
+* make sure all ROS packages are compiled successfully
+* source the workspace environment
+* ensure RViz frame is set correctly
+
+---
