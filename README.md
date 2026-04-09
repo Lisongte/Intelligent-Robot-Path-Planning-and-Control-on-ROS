@@ -6,7 +6,7 @@ This project builds a complete navigation pipeline for a differential-drive mobi
 
 * environment map publishing
 * occupancy grid generation
-* A* global path planning
+* A* global path planning & optimization
 * robot path tracking controller
 * RViz visualization
 
@@ -42,16 +42,16 @@ Intelligent-Robot-Path-Planning-and-Control-on-ROS/
 
 ---
 
-# Build the Project
+# Build and Run the Project
 
-Compile the workspace:
+## Step1: Compile the workspace:
 
 ```bash
 cd ~/robots
 catkin_make
 ```
 
-Source the environment:
+## Step2: Source the environment:
 
 ```bash
 source ~/robots/devel/setup.bash
@@ -59,13 +59,11 @@ source ~/robots/devel/setup.bash
 
 ---
 
-# Run the Project
+## Step3: Run the Project
 
 Launch the full system:
 
 ```bash
-cd ~/robots
-source devel/setup.bash
 roslaunch my_map_display demo.launch
 ```
 
