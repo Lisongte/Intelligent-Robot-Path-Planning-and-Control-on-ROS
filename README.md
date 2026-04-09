@@ -57,8 +57,6 @@ catkin_make
 source ~/robots/devel/setup.bash
 ```
 
----
-
 ## Step3: Run the Project
 
 Launch the full system:
