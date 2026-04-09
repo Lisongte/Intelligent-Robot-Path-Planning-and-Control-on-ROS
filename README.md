@@ -116,17 +116,6 @@ world
 
 ---
 
-# Current Implemented Functions
-
-* static map publishing
-* obstacle visualization
-* occupancy grid generation
-* A* path planning
-* single-shot path publishing
-* robot path tracking controller
-* launch synchronization
-
----
 
 # Planning Algorithm
 
@@ -138,8 +127,6 @@ Planned extensions:
 
 * path smoothing
 * trajectory optimization
-* local replanning
-
 ---
 
 # Motion Control
@@ -153,29 +140,12 @@ Current controller features:
 
 ---
 
-# Future Work
-
-Future development will include:
-
-* virtual target point tracking
-* improved path smoothness
-* dynamic obstacle avoidance
-* local planner integration
-* full navigation stack compatibility
-
----
-
 
 
 # Notes
 
-Before running:
+Before running the project, pre-settings below must be checked:
 
-* compile all ROS packages successfully
-* source workspace environment
-* ensure RViz frame is set to `world`
-
----
+* You must compile all ROS packages successfully
 
 
-ROS Navigation Project for Intelligent Mobile Robot Research
