@@ -1,16 +1,6 @@
 # Intelligent Robot Path Planning and Control on ROS
 
-A ROS-based intelligent mobile robot navigation project for **map generation, occupancy grid construction, global path planning, path tracking, and visualization in RViz**.
-
-This project builds a complete navigation pipeline for a differential-drive mobile robot under ROS, including:
-
-* environment map publishing
-* occupancy grid generation
-* A* global path planning & optimization
-* robot path tracking controller
-* RViz visualization
-
----
+This is a ROS-based intelligent mobile robot navigation project for **occupancy grid construction, global path planning, path tracking, and visualization in RViz**, and will be applied to real-world robots. This project builds a complete navigation pipeline for a differential-drive mobile robot under ROS.
 
 # Project Structure
 
@@ -34,16 +24,15 @@ Intelligent-Robot-Path-Planning-and-Control-on-ROS/
 
 # Environment Requirements
 
-* Ubuntu 20.04
-* ROS Noetic
+* ROS Noetic based on Ubuntu 20.04.x
 * CMake
 * catkin workspace
-* RViz
+* RViz (for visualization)
 
 ---
 
 # Build and Run the Project
-
+**Note: Before running, make sure the project is placed inside your ROS workspace, e.g., ~/robots/src/.**
 ## Step1: Compile the workspace:
 
 ```bash
@@ -56,7 +45,7 @@ catkin_make
 ```bash
 source ~/robots/devel/setup.bash
 ```
-
+You must source the workspace in every new terminal before running ROS nodes.
 ## Step3: Run the Project
 
 Launch the full system:
